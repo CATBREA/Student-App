@@ -33,14 +33,14 @@ public class RegisterActivity extends AppCompatActivity {
             String password = etPassword.getText().toString();
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(RegisterActivity.this, "请填写所有字段！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Please fill in all the fields！", Toast.LENGTH_SHORT).show();
             } else {
                 long result = dbHelper.registerStudent(name, email, password);
                 if (result > 0) {
-                    Toast.makeText(RegisterActivity.this, "注册成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Registration is successful！", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(RegisterActivity.this, "注册失败，可能是电子邮件已被注册。", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Registration failed, it may be that the email has already been registered。", Toast.LENGTH_SHORT).show();
                 }
             }
         });
