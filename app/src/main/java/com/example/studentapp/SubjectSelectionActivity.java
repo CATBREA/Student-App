@@ -20,7 +20,7 @@ public class SubjectSelectionActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private ArrayList<HashMap<String, String>> subjectList;
     private int totalCredits = 0;
-    private final int CREDIT_LIMIT = 24; // 最大总学分
+    private final int CREDIT_LIMIT = 24; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
