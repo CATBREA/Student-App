@@ -10,7 +10,7 @@
         android:id="@+id/tv_subjects"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="请选择要注册的科目（最多 24 学分）"
+        android:text="Please select the course you want to register for (maximum 24 credits)"
         android:textSize="18sp"
         android:paddingBottom="16dp" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/btn_enroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="提交注册"
+        android:text="Submit your registration"
         android:layout_marginTop="16dp" />
 
 </LinearLayout>
