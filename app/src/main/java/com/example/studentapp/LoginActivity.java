@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(LoginActivity.this, "登录失败，检查电子邮件或密码。", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login failed, check email or password。", Toast.LENGTH_SHORT).show();
             }
         });
     }
