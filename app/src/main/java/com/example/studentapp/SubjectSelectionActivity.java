@@ -31,10 +31,8 @@ public class SubjectSelectionActivity extends AppCompatActivity {
         btnEnroll = findViewById(R.id.btn_enroll);
         dbHelper = new DatabaseHelper(this);
 
-        // 向数据库中插入 5 个学科和对应的学分（仅在首次运行时）
         insertDefaultSubjects();
 
-        // 加载科目数据
         loadSubjects();
 
         btnEnroll.setOnClickListener(v -> {
@@ -42,18 +40,16 @@ public class SubjectSelectionActivity extends AppCompatActivity {
         });
     }
 
-    // 插入 5 个默认的科目
     private void insertDefaultSubjects() {
         if (dbHelper.getSubjects().getCount() == 0) {
-            dbHelper.insertSubject("数学", 5);
-            dbHelper.insertSubject("物理", 4);
-            dbHelper.insertSubject("化学", 3);
-            dbHelper.insertSubject("英语", 2);
-            dbHelper.insertSubject("计算机科学", 6);
+            dbHelper.insertSubject("Mathematics", 5);
+            dbHelper.insertSubject("Physics", 4);
+            dbHelper.insertSubject("Chemistry", 3);
+            dbHelper.insertSubject("English", 2);
+            dbHelper.insertSubject("Computer Science", 6);
         }
     }
 
-    // 加载科目到 ListView
     private void loadSubjects() {
         Cursor cursor = dbHelper.getSubjects();
         subjectList = new ArrayList<>();
@@ -67,7 +63,6 @@ public class SubjectSelectionActivity extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
 
-        // 使用SimpleAdapter将数据绑定到ListView
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
                 subjectList,
@@ -80,7 +75,6 @@ public class SubjectSelectionActivity extends AppCompatActivity {
         lvSubjects.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
-    // 处理提交注册
     private void enrollSelectedSubjects() {
         ArrayList<String> selectedSubjects = new ArrayList<>();
         totalCredits = 0;
@@ -95,18 +89,18 @@ public class SubjectSelectionActivity extends AppCompatActivity {
         }
 
         if (totalCredits > CREDIT_LIMIT) {
-            Toast.makeText(this, "总学分不能超过 " + CREDIT_LIMIT + " 分，当前为 " + totalCredits + " 分！", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "The total number of credits cannot be exceeded " + CREDIT_LIMIT + " points, currently is " + totalCredits + " points！", Toast.LENGTH_LONG).show();
         } else if (selectedSubjects.size() > 0) {
             String subjects = String.join(", ", selectedSubjects);
-            long result = dbHelper.enrollSubjects(1, subjects, totalCredits); // 假设学生ID = 1
+            long result = dbHelper.enrollSubjects(1, subjects, totalCredits); 
 
             if (result > 0) {
-                Toast.makeText(this, "注册成功！总学分: " + totalCredits, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Registration Successful! Total credits: " + totalCredits, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "注册失败，请重试！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Registration failed, please try again！", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "请至少选择一门学科！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select at least one subject！", Toast.LENGTH_SHORT).show();
         }
     }
 }
